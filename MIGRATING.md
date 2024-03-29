@@ -1,7 +1,12 @@
 # Migrating Between TensorFlow Java Releases
 
-TensorFlow Java is still in an alpha stage, therefore is subject to contain breaking changes between the different releases. This guide explain in detail
-how to migrate your code from a previous version to a new one that includes some changes that are not backward compatible.
+This guide explains in detail how to migrate your code from a previous version to a new major version.
+
+## Migrating to 1.0.0
+
+In versions before 0.4.0 `Session.Runner.run` and `TensorFunction.call` returned a `List<Tensor>`. In newer versions 
+they return a `Result` class which is `AutoCloseable` to make management of the tensor lifetime simpler. To migrate
+users should wrap the `run` invocation in a try-with-resources statement.
 
 ## Migrating to 0.3.0
 
